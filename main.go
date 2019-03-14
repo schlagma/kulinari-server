@@ -6,6 +6,7 @@ import (
     "net/http"
     "log"
     "os"
+    "io/ioutil"
     "strings"
     "strconv"
     "github.com/gorilla/mux"
@@ -59,6 +60,7 @@ type RecipeData struct {
     CatContent              []Recipe
     URL                     string
     BaseURL                 string
+    DarkMode                bool
 }
 
 type ApiRecipeData struct {
@@ -141,12 +143,15 @@ type Config struct {
 }
 
 type SGeneralData struct {
-    DBhost  string
-    DBname  string
-    DBuser  string
-    Lang    string
-    URL     string
-    BaseURL string
+    DBhost      string
+    DBname      string
+    DBuser      string
+    Lang        string
+    URL         string
+    BaseURL     string
+    ThemeColor  string
+    AccentColor string
+    DarkMode    bool
 }
 
 func dbConn() (db *sql.DB) {
@@ -367,6 +372,7 @@ func main() {
    // r.HandleFunc("/settings/users", SUsersHandler)
     r.HandleFunc("/settings/about", SAboutHandler)
     r.HandleFunc("/settings/about/copyright", SAboutCopyrightHandler)
+    r.HandleFunc("/settings/forms/colors", SColorsHandler).Methods("POST")
     r.HandleFunc("/help", HelpHandler)
     r.HandleFunc("/api/0.1/recipes/all", ApiRecListHandler)
     r.HandleFunc("/api/0.1/recipes/{id:[0-9]+}", ApiRecipeHandler)
@@ -1130,6 +1136,9 @@ func ShoppingHandler(w http.ResponseWriter, r *http.Request) {
 
 func SGeneralHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
+
+    db := dbConn()
+    selDB, err := db.Query("SELECT themecolor, accentcolor, darkmode FROM settings WHERE uid=1")
     
     tpl := template.Must(template.ParseFiles("templates/settings_general.html", "templates/parts.html"))
     config := LoadConfig("config/config.json")
@@ -1138,10 +1147,26 @@ func SGeneralHandler(w http.ResponseWriter, r *http.Request) {
     data.DBname = config.Database.Name
     data.DBuser = config.Database.User
     data.Lang = config.Lang
+
+    for selDB.Next() {
+        var darkmode int
+        var themecolor, accentcolor string
+        err = selDB.Scan(&themecolor, &accentcolor, &darkmode)
+        checkErr(err)
+        data.ThemeColor = themecolor
+        data.AccentColor = accentcolor
+        data.DarkMode = false
+        if darkmode == 1 {
+            data.DarkMode = true
+        }
+    }
+    defer db.Close()
+
     data.URL = r.URL.Path
     data.BaseURL = "/"
     tpl.Execute(w, data)
 }
+
 /*
 func SUsersHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
@@ -1226,6 +1251,30 @@ func SAboutCopyrightHandler(w http.ResponseWriter, r *http.Request) {
     data.URL = r.URL.Path
     data.BaseURL = "/"
     tpl.Execute(w, data)
+}
+
+func SColorsHandler(w http.ResponseWriter, r *http.Request) {
+    isLoggedIn(w,r)
+
+    themecolor := r.FormValue("themecolor")
+    accentcolor := r.FormValue("accentcolor")
+
+    db := dbConn()
+    insForm, err := db.Prepare("UPDATE settings SET themecolor=?, accentcolor=? WHERE uid=1")
+    checkErr(err)
+    insForm.Exec(themecolor, accentcolor)
+    defer insForm.Close()
+    defer db.Close()
+
+    d1 := ":root {--theme-color:" + themecolor + ";--accent-color:" + accentcolor + ";}"
+    d2 := []byte(d1)
+    err = ioutil.WriteFile("assets/css/colors.css", d2, 0644)
+    checkErr(err)
+
+    baseURL := "/"
+    redirect := baseURL + "settings/general"
+    
+    http.Redirect(w, r, redirect, 302)
 }
 
 func HelpHandler(w http.ResponseWriter, r *http.Request) {

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}} | Kulinari</title>
+    {{template "head" .}}
+</head>
+<body>
+    <div id="app" class="viewShare">
+        {{template "header-share" .}}
+
+        {{block "content-recipes" .}}
+        <div id="content" class="recipe-content">
+            <div id="pageheader" {{if .ImgExist}}style="background-image: url(/assets/img/recipes/{{.Id}}.jpg)"{{end}}>
+                <div class="bg">
+                    <div class="pageheader-content{{if .ImgExist}}{{else}} phc-small{{end}}">
+                        <div class="recipe-menu">
+                            <a id="btnPrint" class="menu-item" type="button" title="Drucken" accesskey="p"><svg viewBox="0 0 24 24"><path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" /></svg></a>
+                        </div>
+                        <h1 class="recipe-title">{{.Title}}</h1>
+                        {{if .CategoriesExist}}<div class="badge-wrapper">
+                            {{range .Categories}}<a href="{{.BaseURL}}recipes/cat/{{.Id}}"><span class="badge badge-success">{{.Title}}</span></a>{{end}}
+                        </div>{{end}}
+                    </div>
+                </div>
+            </div>
+            <div id="recipe">
+                <div id="ingredients">
+                    <h4>Zutaten</h4>
+                    <div id="ingFor">
+                        <span>für ca.</span><input id="ingVal" type="number" value="{{.IngredientsForValue}}" min="1" max="999"><button class="btn" id="ingCalc"><svg viewBox="0 0 24 24"><path d="M19,12H22.32L17.37,16.95L12.42,12H16.97C17,10.46 16.42,8.93 15.24,7.75C12.9,5.41 9.1,5.41 6.76,7.75C4.42,10.09 4.42,13.9 6.76,16.24C8.6,18.08 11.36,18.47 13.58,17.41L15.05,18.88C12,20.69 8,20.29 5.34,17.65C2.22,14.53 2.23,9.47 5.35,6.35C8.5,3.22 13.53,3.21 16.66,6.34C18.22,7.9 19,9.95 19,12Z" /></svg></button><span>{{.IngredientsForType}}</span>
+                    </div>
+                    <table id="ingTable" class="table">
+                        {{if .Ing1TitleExist}}<tr><th colspan="3">{{.Ingredients1Title}}:</th></tr>{{end}}
+                        {{if .Ing1Exist}}{{range .Ingredients1}}<tr>{{range .}}<td>{{.}}</td>{{end}}</tr>{{end}}{{end}}
+                        {{if .Ing2TitleExist}}<tr><th colspan="3">{{.Ingredients2Title}}:</th></tr>{{end}}
+                        {{if .Ing2Exist}}{{range .Ingredients2}}<tr>{{range .}}<td>{{.}}</td>{{end}}</tr>{{end}}{{end}}
+                        {{if .Ing3TitleExist}}<tr><th colspan="3">{{.Ingredients3Title}}:</th></tr>{{end}}
+                        {{if .Ing3Exist}}{{range .Ingredients3}}<tr>{{range .}}<td>{{.}}</td>{{end}}</tr>{{end}}{{end}}
+                        {{if .Ing4TitleExist}}<tr><th colspan="3">{{.Ingredients4Title}}:</th></tr>{{end}}
+                        {{if .Ing4Exist}}{{range .Ingredients4}}<tr>{{range .}}<td>{{.}}</td>{{end}}</tr>{{end}}{{end}}
+                    </table>
+                </div>
+                <div id="instructions">
+                    <h4>Zubereitung</h4>
+                    {{.Directions}}
+                </div>
+                {{if .CommentsExist}}<div id="comments">
+                    <h4 class="h4TopMargin">Anmerkungen</h4>
+                    {{.Comments}}
+                </div>{{end}}
+            </div>
+        </div>
+        {{end}}
+    </div>
+
+    {{template "scripts" .}}
+</body>
+</html>

@@ -1,0 +1,13 @@
+:root {
+    --bg-dark: #222;
+    --bg-dark2: #282828;
+    --bg-light: #1a1a1a;
+    --bg-white: #111;
+    --font-color: #e5e5e5;
+    --separator-color: #353535;
+    --sep-color-dark: #3d3d3d;
+}
+
+#pageheader {
+    background-color: var(--bg-dark);
+}

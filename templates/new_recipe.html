@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neues Rezept | Kulinari</title>
+        {{template "head" .}}
+</head>
+<body>
+    <div id="app">
+        {{template "header" .}}
+        {{template "sidebar-recipes" .}}
+
+        <div id="content" class="rEdit">
+        <form method="POST" action="/recipes/create">
+            <div id="pageheader">
+                <div class="bg">
+                    <div class="container">
+                        <div class="pageheader-content">
+                            <div class="recipe-menu">
+                                <button id="btnSave" class="menu-item" type="submit"><svg viewBox="0 0 24 24"><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg></button>
+                            </div>
+                            <input id="inputTitle" placeholder="Titel" name="title" autofocus required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="recipe" style="padding-top: 2rem">
+                <div style="grid-column: 1 / span 2; grid-row: 1">
+                    <fieldset>
+                        <legend>Kategorien</legend>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-gap: .25rem 1rem;">
+                            {{range .Categories}}<div><input id="cat{{.Id}}" type="checkbox" name="categories" value="{{.Id}}"><label for="cat{{.Id}}"></label><label for="cat{{.Id}}">{{.Title}}</label></div>{{end}}
+                        </div>
+                        <br>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Bild</legend>
+                        <input name="datei" type="file" size="50" accept="image/jpeg">
+                    </fieldset>
+                </div>
+                <div id="ingredients" style="grid-column: 1; grid-row: 2">
+                    <h4>Zutaten</h4>
+                    <div style="margin-bottom: 1.5rem; text-align: center;">
+                    <span>für ca.</span><input type="number" min="1" value="4" style="width: 3.5rem; padding: .35rem !important; margin: 0 .75rem;" name="ingredientsForValue"><input placeholder="Personen/Stück/&hellip;" style="width: 8rem" name="ingredientsForType">
+                    </div>
+                    <div class="box">
+                        Trennen Sie folgendermaßen: Anzahl§§Einheit§§Zutat
+                    </div>
+                    <input id="inputIng1Title" placeholder="Zutaten-Titel 1" name="ingredients1title">
+                    <textarea id="taIng1" placeholder="Zutaten 1" name="ingredients1" required></textarea>
+                    <input id="inputIng2Title" placeholder="Zutaten-Titel 2" name="ingredients2title">
+                    <textarea id="taIng2" placeholder="Zutaten 2" name="ingredients2"></textarea>
+                    <input id="inputIng3Title" placeholder="Zutaten-Titel 3" name="ingredients3title">
+                    <textarea id="taIng3" placeholder="Zutaten 3" name="ingredients3"></textarea>
+                    <input id="inputIng4Title" placeholder="Zutaten-Titel 4" name="ingredients4title">
+                    <textarea id="taIng4" placeholder="Zutaten 4" name="ingredients4"></textarea>
+                </div>
+                <div id="instructions" style="grid-column: 2; grid-row: 2">
+                    <h4>Zubereitung</h4>
+                    <div class="box">
+                        Nutzen Sie Markdown zur Formatierung des Textes.
+                    </div>
+                    <textarea id="taDirections" placeholder="Zubereitung" name="directions" required></textarea>
+                    <h4>Anmerkungen</h4>
+                    <div class="box">
+                        Nutzen Sie Markdown zur Formatierung des Textes.
+                    </div>
+                    <textarea id="taComments" placeholder="Anmerkungen" name="comments"></textarea>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    
+    {{template "scripts" .}}
+</body>
+</html>

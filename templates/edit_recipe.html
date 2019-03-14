@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bearbeiten: {{.Title}} | Kulinari</title>
+        {{template "head" .}}
+</head>
+<body>
+    <div id="app">
+        {{template "header" .}}
+        {{template "sidebar-recipes" .}}
+
+        {{block "content-recipes" .}}
+        <div id="content" class="rEdit">
+        <form method="POST" action="{{.Id}}">
+            <div id="pageheader">
+                <div class="bg">
+                    <div class="container">
+                        <div class="pageheader-content">
+                            <div class="recipe-menu">
+                                <button id="btnSave" class="menu-item" type="submit" title="Speichern"><svg viewBox="0 0 24 24"><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg></button>
+                                <a id="btnView" class="menu-item" type="button" href="/recipes/view/{{.Id}}" title="Ansichtsmodus"><svg viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" /></svg></a>
+                                <a id="btnDelete" class="menu-item" title="Löschen"><svg viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg></a>
+                            </div>
+                            <input id="inputTitle" placeholder="Titel" value="{{.Title}}" name="title" autofocus required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="recipe" style="padding-top: 2rem">
+                <div style="grid-column: 1 / span 2; grid-row: 1">
+                    <fieldset>
+                        <legend>Kategorien</legend>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-gap: .25rem 1rem;">
+                            {{range .CategoriesSelected}}<div><input id="cat{{.Id}}" type="checkbox" name="categories" value="{{.Id}}" {{if .IsSelected}}checked{{end}}><label for="cat{{.Id}}"></label><label for="cat{{.Id}}">{{.Title}}</label></div>{{end}}
+                        </div>
+                        <br>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Bild</legend>
+                        <p>Hier können Sie ein neues Bild für dieses Rezept hochladen. Sollte für dieses Rezept bereits ein Bild vorhanden sein, so wird dieses durch das neue ersetzt.</p>
+                        <input name="datei" type="file" size="50" accept="image/jpeg">
+                    </fieldset>
+                </div>
+                <div id="ingredients" style="grid-column: 1; grid-row: 2">
+                    <h4>Zutaten</h4>
+                    <div style="margin-bottom: 1.5rem; text-align: center;">
+                    <span>für ca.</span><input type="number" value="{{.IngredientsForValue}}" min="1" style="width: 3.5rem; padding: .35rem !important; margin: 0 .75rem;" name="ingredientsForValue"><input value="{{.IngredientsForType}}" placeholder="Personen/Stück/&hellip;" style="width: 8rem" name="ingredientsForType">
+                    </div>
+                    <div class="box">
+                        Trennen Sie folgendermaßen: Anzahl§§Einheit§§Zutat
+                    </div>
+                    <input id="inputIng1Title" value="{{.Ingredients1Title}}" placeholder="Zutaten-Titel 1" name="ingredients1title">
+                    <textarea id="taIng1" placeholder="Zutaten 1" name="ingredients1" required>{{.Ingredients1Raw}}</textarea>
+                    <input id="inputIng2Title" value="{{.Ingredients2Title}}" placeholder="Zutaten-Titel 2" name="ingredients2title">
+                    <textarea id="taIng2" placeholder="Zutaten 2" name="ingredients2">{{.Ingredients2Raw}}</textarea>
+                    <input id="inputIng3Title" value="{{.Ingredients3Title}}" placeholder="Zutaten-Titel 3" name="ingredients3title">
+                    <textarea id="taIng3" placeholder="Zutaten 3" name="ingredients3">{{.Ingredients3Raw}}</textarea>
+                    <input id="inputIng4Title" value="{{.Ingredients4Title}}" placeholder="Zutaten-Titel 4" name="ingredients4title">
+                    <textarea id="taIng4" placeholder="Zutaten 4" name="ingredients4">{{.Ingredients4Raw}}</textarea>
+                </div>
+                <div id="instructions" style="grid-column: 2; grid-row: 2">
+                    <h4>Zubereitung</h4>
+                    <div class="box">
+                        Nutzen Sie Markdown zur Formatierung des Textes.
+                    </div>
+                    <textarea id="taDirections" placeholder="Zubereitung" name="directions" required>{{.DirectionsRaw}}</textarea>
+                    <h4>Anmerkungen</h4>
+                    <div class="box">
+                        Nutzen Sie Markdown zur Formatierung des Textes.
+                    </div>
+                    <textarea id="taComments" placeholder="Anmerkungen" name="comments">{{.CommentsRaw}}</textarea>
+                </div>
+            </div>
+            </form>
+        </div>
+        {{end}}
+    </div>
+
+    {{template "modal-delete" .}}
+    {{template "scripts" .}}
+</body>
+</html>

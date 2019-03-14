@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}} | Kulinari</title>
+    {{template "head" .}}
+</head>
+<body>
+    <div id="app">
+        {{template "header" .}}
+        {{template "sidebar-recipes" .}}
+        
+        <div id="sidebarContent">
+            <div id="search-wrapper">
+                <div id="search-field">
+                    <input id="recFilter" placeholder="Filtern &hellip;">
+                </div>
+                <div id="search-content">
+                    <ul id="recUl" class="sidebar-list">
+                        {{range .Recipes}}<li><a href="{{$.BaseURL}}recipes/view/{{.Id}}">{{.Title}}</a></li>{{end}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="cookbooks-content" class="container content-grid">
+                <div id="c-filter">
+                    <button id="btnCatBack"><svg viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg></button><input id="catFilter" class="catBackFilter" placeholder="Rezepte filtern …" autofocus>
+                </div>
+                <div id="c-books">
+                    <div id="cookbooks">
+                        {{range .CatContent}}<a class="book" href="{{$.BaseURL}}recipes/view/{{.Id}}">
+                            <div class="img">
+                                <img src="/assets/img/recipes/{{.Id}}-300.jpg" alt="">
+                            </div>
+                            <h1>{{.Title}}</h1>
+                        </a>{{end}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{template "scripts" .}}
+</body>
+</html>

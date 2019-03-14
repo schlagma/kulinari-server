@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Einstellungen | Kulinari</title>
+    {{template "head" .}}
+</head>
+<body>
+    <div id="app">
+        {{template "header" .}}
+        {{template "sidebar-settings" .}}
+
+        <div id="content">
+            <div class="c-wrapper" style="padding-top: 2rem">
+                <div class="grid4">
+                    <fieldset>
+                        <legend>Sprache <button type="submit" class="settingsSave"><svg viewBox="0 0 24 24">
+                            <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
+                        </svg></button></legend>
+                        <select name="lang" style="width: 100%">
+                            <option value="browser" selected>Browser-Einstellung</option>
+                            <option value="de-de"{{if eq .Lang "de-de"}} selected{{end}}>Deutsch (DE) [German]</option>
+                            <option value="en-us"{{if eq .Lang "en-us"}} selected{{end}}>English (US)</option>
+                        </select>
+                        <br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Datumsformat <button type="submit" class="settingsSave"><svg viewBox="0 0 24 24">
+                            <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
+                        </svg></button></legend>
+                        <select name="lang" style="width: 100%">
+                            <option value="de-de"{{if eq .Lang "de-de"}} selected{{end}}>DD.MM.YYYY / hh:mm</option>
+                            <option value="en-us"{{if eq .Lang "en-us"}} selected{{end}}>YYYY-MM-DD / hh:mm</option>
+                        </select>
+                        <br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Dunkles Design <button type="submit" class="settingsSave"><svg viewBox="0 0 24 24">
+                            <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
+                        </svg></button></legend>
+                        <input type="checkbox" id="darkMode" name="head" value="#208841"><label for="darkMode"></label><label for="darkMode">Dunkles Design aktivieren</label>
+                        <br><br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Farben <button type="submit" class="settingsSave"><svg viewBox="0 0 24 24">
+                            <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
+                        </svg></button></legend>
+                        <div class="grid2">
+                            <div>
+                                <p><b>Hauptfarbe</b></p>
+                                <input type="color" id="setPrimaryColor" name="primary" value="{{.ThemeColor}}">
+                           </div>
+                            <div>
+                                <p><b>Akzentfarbe</b></p>
+                                <input type="color" id="setAccentColor" name="accent" value="{{.AccentColor}}">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <br>
+                <fieldset>
+                    <legend>Datenbank <button type="submit" class="settingsSave"><svg viewBox="0 0 24 24">
+                        <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
+                    </svg></button></legend>
+                    <div class="grid4">
+                        <input type="text" placeholder="Datenbank-Host" value="{{.DBhost}}">
+                        <input type="text" placeholder="Datenbank-Name" value="{{.DBname}}">
+                        <input type="text" placeholder="Datenbank-Benutzer" value="{{.DBuser}}">
+                        <input type="password" placeholder="Neues Datenbank-Passwort">
+                    </div>
+                    <br>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    {{template "scripts" .}}
+</body>
+</html>

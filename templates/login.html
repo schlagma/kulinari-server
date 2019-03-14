@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kulinari</title>
+    {{template "head" .}}
+</head>
+<body>
+    <div id="app">
+        <div id="login">
+            <div class="login-wrapper">
+                <div class="logo">
+                    <img src="{{.BaseURL}}assets/img/logo/kulinari-logo.svg" alt="">
+                </div>
+                
+                <form method="post" action="/login?redirect={{.Redirect}}">
+                    <input name="uname" type="text" placeholder="Benutzername" required autofocus value="{{.User}}">
+                    <input name="password" type="password" placeholder="Passwort" required>
+                    <button class="btn" type="submit">Anmelden</button>
+                </form>
+            </div>
+            <div class="login-space"></div>
+            <div class="login-error">
+                {{block "flash" .}}{{end}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

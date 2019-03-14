@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Einstellungen | Kulinari</title>
+    {{template "head"}}
+</head>
+<body>
+    <div id="app">
+        {{template "header"}}
+        {{template "sidebar-settings"}}
+
+        <div id="content">
+            <div class="c-wrapper">
+                <fieldset id="newUser" class="topMargin15">
+                    <legend>Neuer Benutzer</legend>
+                    <div class="grid6">
+                        <input placeholder="Benutzername" required>
+                        <input placeholder="Vorname" required>
+                        <input placeholder="Nachname" required>
+                        <input type="password" placeholder="Passwort" required>
+                        <input type="email" placeholder="E-Mail-Adresse" required>
+                        <select name="lang" style="width: 100%; margin-bottom: 0;" required>
+                            <option value="user" selected>Benutzer</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit">Speichern</button><br><br>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    {{template "scripts"}}
+</body>
+</html>

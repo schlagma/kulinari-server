@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Einkaufsliste | Kulinari</title>
+    {{template "head"}}
+</head>
+<body>
+<div id="app" class="start">
+        {{template "header-nsb"}}
+
+<div id="content">
+<div id="purchase-content" class="container content-grid">
+    <div id="p-title-all"><h4>Alle Rezepte</h4></div>
+    <div id="p-filter-all"><input id="pRecFilter" class="w100" placeholder="Filtern &hellip;"></div>
+    <div id="p-list-all">
+        <div id="pRecUl" class="r-list">
+            {{range .Recipes}}<div class="r-list-item"><span>{{.Title}}</span><div class="r-list-btns"><button class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg></button></div></div>{{end}}
+        </div>
+    </div>
+
+    <div id="p-title-selected"><h4>Ausgewählte Rezepte</h4></div>
+    <div id="p-list-selected">
+        <div class="r-list">
+            <div class="r-list-item"><span>Alblinsensuppe mit Kräutercroutons</span><div class="r-list-btns"><input type="number" value="4" min="1"><button class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M19,13H5V11H19V13Z" /></svg></button></div></div>
+            <div class="r-list-item"><span>Paella</span><div class="r-list-btns"><input type="number" value="4" min="1"><button class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M19,13H5V11H19V13Z" /></svg></button></div></div>
+            <div class="r-list-item"><span>Zimtsterne</span><div class="r-list-btns"><input type="number" value="4" min="1"><button class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M19,13H5V11H19V13Z" /></svg></button></div></div>
+            <div class="r-list-item"><span>Zimtsterne</span><div class="r-list-btns"><input type="number" value="4" min="1"><button class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M19,13H5V11H19V13Z" /></svg></button></div></div>
+        </div>
+    </div>
+    <div id="p-footer">
+        <div class="f-right"><button class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" /></svg>&nbsp; Einkaufsliste erstellen</button></div>
+    </div>
+</div>
+ 
+</div>
+    
+    </div>
+</div>
+    {{template "scripts"}}
+</body>
+</html>

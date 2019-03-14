@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Über | Kulinari</title>
+    {{template "head" .}}
+</head>
+<body>
+    <div id="app">
+        {{template "header" .}}
+        {{template "sidebar-settings" .}}
+
+        <div id="content" class="contentTabs">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active">Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/settings/about/copyright">Verwendete Software</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="info" role="tabpanel">
+                    <div class="content-wrapper" style="display: grid; grid-template-columns: 1fr auto auto 1fr; grid-gap: 2rem;">
+                        <div></div>
+                        <div class="about-left">
+                            <img src="/assets/img/logo/kulinari-logo.svg" alt="" />
+                        </div>
+                        <div class="about-right">
+                            <h3>Kulinari</h3>
+                            <table class="no-border">
+                                <tr><td><b>Version:</b></td><td>0.1</td></tr>
+                                <tr><td><b>Lizenz:</b></td><td>AGPLv3+</td></tr>
+                            </table>
+                            <p>&copy; 2018&ndash;2019 Marc Schlagenhauf</p>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="grid2">
+                        <fieldset>
+                            <legend>Lizenz</legend>
+                            <p>This program is free software: you can redistribute it and/or modify
+                            it under the terms of the <b>GNU Affero General Public License</b> as
+                            published by the Free Software Foundation, either version 3 of the
+                            License, or (at your option) any later version.</p>
+
+                            <p>This program is distributed in the hope that it will be useful,
+                            but WITHOUT ANY WARRANTY; without even the implied warranty of
+                            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                            GNU Affero General Public License for more details.</p>
+
+                            <p>You should have received a copy of the GNU Affero General Public License
+                            along with this program.  If not, see <a href="https://www.gnu.org/licenses/agpl.txt" target="_blank">https://www.gnu.org/licenses/agpl.txt</a>.</p>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Unterstützung</legend>
+                            <p>Diese Software wurde ursprünglich für private Zwecke geschrieben, um Rezepte von überall aus zugänglich zu machen und ihre Verwaltung zu vereinfachen.</p>
+
+                            <p>Sollten Sie die Weiterentwicklung fördern wollen, können Sie dies gerne mit Anregungen und eigenen Beiträgen über GitHub tun. Aber auch Spenden sind herzlich willkommen.</p>
+                            <hr />
+                            <div style="text-align: center; margin-bottom: 1rem;">
+                                <a href="https://git.schlagma.de/marc/kulinari" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>&nbsp; Website</a>
+                                <div style="width: 2rem; display: inline-block;"></div>
+                                <a href="https://git.schlagma.de/marc/kulinari" target="_blank"><svg viewBox="0 0 24 24"><path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z" /></svg>&nbsp; Quellcode</a>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{template "scripts" .}}
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}} | Kulinari</title>
+    {{template "head" .}}
+</head>
+<body>
+    <div id="app">
+        {{template "header" .}}
+        {{template "sidebar-recipes" .}}
+
+        <div id="content">
+            <div id="cookbooks-content" class="container content-grid">
+                <div id="c-filter">
+                    <input id="catFilter" class="w100" placeholder="Kategorien filtern …">
+                </div>
+                <div id="c-books">
+                    <div id="cookbooks">
+                        {{range .Categories}}<a class="book" href="/recipes/cat/{{.Id}}">
+                            <div class="img">
+                                <img src="/assets/img/cat/{{.Id}}-300.jpg" alt="">
+                            </div>
+                            <h1>{{.Title}}</h1>
+                        </a>{{end}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{template "scripts" .}}
+</body>
+</html>

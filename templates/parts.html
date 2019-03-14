@@ -1,0 +1,192 @@
+{{define "head"}}
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" />
+<link href="{{.BaseURL}}assets/css/styles.css" rel="stylesheet" type="text/css" />
+<!--<link href="{{.BaseURL}}assets/css/dark.css" rel="stylesheet" type="text/css" />-->
+<link href="{{.BaseURL}}assets/css/colors.css" rel="stylesheet" type="text/css" />
+<link href="{{.BaseURL}}assets/img/logo/favicon-32-2.png" type="image/png" rel="icon" sizes="32x32" />
+<link href="{{.BaseURL}}assets/img/logo/favicon-160-2.png" type="image/png" rel="icon" sizes="160x160" />
+<link href="{{.BaseURL}}assets/img/logo/favicon-300-2bbb.png" type="image/png" rel="apple-touch-icon" sizes="300x300" />
+{{end}}
+
+
+{{define "header"}}
+<div id="header" class="navbar">
+    <div class="container">
+        <button id="btnSidebar"><svg viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg></button>
+        <div class="header-nav">
+            <a class="menu-item" href="{{.BaseURL}}recipes">Rezepte</a><a class="menu-item" href="/shopping">Einkaufsliste</a>
+        </div>
+        <div class="dropdown">
+            <button id="btnMenu" type="button">
+                <svg viewBox="0 0 24 24">
+                <path fill="#ffffff" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
+            </svg>
+            </button>
+            <div id="menu" class="dropdown-menu">
+                <a class="dropdown-item" href="{{.BaseURL}}recipes/new"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z" /></svg><span>Neues Rezept</span></a>
+                <a class="dropdown-item" href="{{.BaseURL}}"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13M10.05,11.22L12.88,14.05L15,11.93V19H7.93L10.05,16.88L7.22,14.05" /></svg><span>Importieren</span></a>
+                <a class="dropdown-item" href="{{.BaseURL}}"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13M8.93,12.22H16V19.29L13.88,17.17L11.05,20L8.22,17.17L11.05,14.35" /></svg><span>Exportieren</span></a>
+                <hr>
+                <a class="dropdown-item" href="{{.BaseURL}}settings/general"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" /></svg><span>Einstellungen</span></a>
+                <a class="dropdown-item" href="{{.BaseURL}}help"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M19.79,15.41C20.74,13.24 20.74,10.75 19.79,8.59L17.05,9.83C17.65,11.21 17.65,12.78 17.06,14.17L19.79,15.41M15.42,4.21C13.25,3.26 10.76,3.26 8.59,4.21L9.83,6.94C11.22,6.35 12.79,6.35 14.18,6.95L15.42,4.21M4.21,8.58C3.26,10.76 3.26,13.24 4.21,15.42L6.95,14.17C6.35,12.79 6.35,11.21 6.95,9.82L4.21,8.58M8.59,19.79C10.76,20.74 13.25,20.74 15.42,19.78L14.18,17.05C12.8,17.65 11.22,17.65 9.84,17.06L8.59,19.79M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" /></svg><span>Hilfe<span></a>
+                <hr>
+                <form method="POST" action="{{.BaseURL}}logout?redirect={{.URL}}">
+                    <button type="submit" class="dropdown-item"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" /></svg><span>Ausloggen</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+
+{{define "header-nsb"}}
+<div id="header" class="navbar">
+    <div class="container">
+        <div class="header-nav">
+            <a class="menu-item" href="{{.BaseURL}}recipes">Rezepte</a><a class="menu-item" href="/shopping">Einkaufsliste</a>
+        </div>
+        <div class="dropdown">
+            <button id="btnMenu" type="button">
+                <svg viewBox="0 0 24 24">
+                <path fill="#ffffff" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
+            </svg>
+            </button>
+            <div id="menu" class="dropdown-menu">
+                <a class="dropdown-item" href="{{.BaseURL}}recipes/new"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z" /></svg><span>Neues Rezept</span></a>
+                <a class="dropdown-item" href="{{.BaseURL}}"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13M10.05,11.22L12.88,14.05L15,11.93V19H7.93L10.05,16.88L7.22,14.05" /></svg><span>Importieren</span></a>
+                <a class="dropdown-item" href="{{.BaseURL}}"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M6,2C4.89,2 4,2.9 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13M8.93,12.22H16V19.29L13.88,17.17L11.05,20L8.22,17.17L11.05,14.35" /></svg><span>Exportieren</span></a>
+                <hr>
+                <a class="dropdown-item" href="{{.BaseURL}}settings/general"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" /></svg><span>Einstellungen</span></a>
+                <a class="dropdown-item" href="{{.BaseURL}}help"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M19.79,15.41C20.74,13.24 20.74,10.75 19.79,8.59L17.05,9.83C17.65,11.21 17.65,12.78 17.06,14.17L19.79,15.41M15.42,4.21C13.25,3.26 10.76,3.26 8.59,4.21L9.83,6.94C11.22,6.35 12.79,6.35 14.18,6.95L15.42,4.21M4.21,8.58C3.26,10.76 3.26,13.24 4.21,15.42L6.95,14.17C6.35,12.79 6.35,11.21 6.95,9.82L4.21,8.58M8.59,19.79C10.76,20.74 13.25,20.74 15.42,19.78L14.18,17.05C12.8,17.65 11.22,17.65 9.84,17.06L8.59,19.79M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" /></svg><span>Hilfe<span></a>
+                <hr>
+                <form method="POST" action="{{.BaseURL}}logout?redirect={{.URL}}">
+                    <button type="submit" class="dropdown-item"><svg viewBox="0 0 24 24"><path fill="var(--font-color)" d="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" /></svg><span>Ausloggen</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "header-share"}}
+<div id="header" class="navbar">
+    <div class="container">
+        <div class="header-nav">
+            <a href="{{.BaseURL}}" style="display: inline-block;"><img src="{{.BaseURL}}assets/img/logo/kulinari-logo.svg" style="height: 2.25rem; border: none; margin: 0; margin-right: .75rem; position: relative; top: .2rem;"><span style="position: relative;top: -.55rem;">Kulinari</span></a>
+        </div>
+    </div>
+</div>
+{{end}}
+
+
+{{define "scripts"}}
+<script src="{{.BaseURL}}assets/js/kulinari.js" type="text/javascript"></script>
+{{end}}
+
+
+
+{{define "sidebar-recipes"}}
+<div id="sidebarContent">
+    <div id="search-wrapper">
+        <div id="search-field">
+            <input id="recFilter" placeholder="Filtern &hellip;">
+        </div>
+        <div id="search-content">
+            <ul id="recUl" class="sidebar-list">
+                {{range .Recipes}}<li><a href="{{$.BaseURL}}recipes/view/{{.Id}}">{{.Title}}</a></li>{{end}}
+            </ul>
+        </div>
+    </div>
+</div>
+{{end}}
+
+
+{{define "sidebar-settings"}}
+<div id="sidebarContent">
+    <div id="search-wrapper">
+        <ul class="sidebar-list">
+            <li>
+                <a href="{{.BaseURL}}settings/general">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+                    </svg>
+                    <span>Allgemeine Einstellungen</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{.BaseURL}}settings/users">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z" />
+                    </svg>
+                    <span>Benutzer</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{.BaseURL}}settings/about">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                    </svg>
+                    <span>Über</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+{{end}}
+
+
+
+
+{{define "modal-delete"}}
+<div class="modal" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Rezept löschen</h5>
+                <button id="modalDeleteClose" class="close"><svg viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg></button>
+            </div>
+            <div class="modal-body">
+                Sind Sie sicher, dass Sie das Rezept <b>„{{.Title}}“</b> löschen wollen?
+            </div>
+            <div class="modal-footer">
+                <a id="modalDeleteCancel" class="btn btn-secondary" style="margin-right: .5rem">Nein</a><a href="/recipes/delete/{{.Id}}" class="btn btn-secondary">Ja</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "modal-timer"}}
+<div class="modal" id="modalTimer" style="width: 20rem; left: calc(50% - 10rem);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Timer</h5>
+                <button id="modalTimerClose" class="close"><svg viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg></button>
+            </div>
+            <div class="modal-body">
+                <div class="timer">
+                    <span id="hour">00</span>:<span id="minute">00</span>:<span id="second">00</span>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex;">
+                <form style="margin-right: auto;">
+                    <input id="hourInput" type="number" style="width: 3.25rem" value="0" min="0" max="99"> : <input id="minuteInput" type="number" style="width: 3.25rem" value="0" min="0" max="59"> : <input id="secondInput" type="number" style="width: 3.25rem" value="0" min="0" max="59">
+                </form>
+                <div style="margin-left: auto;">
+                    <a id="btnStartStop" class="btn" style="margin-right: .5rem" title="Start/Pause"><svg viewBox="0 0 24 24"><path d="M3,5V19L11,12M13,19H16V5H13M18,5V19H21V5" /></svg></a><a class="btn" title="Beenden"><svg viewBox="0 0 24 24"><path d="M12,20A7,7 0 0,1 5,13C5,11.72 5.35,10.5 5.95,9.5L15.5,19.04C14.5,19.65 13.28,20 12,20M3,4L1.75,5.27L4.5,8.03C3.55,9.45 3,11.16 3,13A9,9 0 0,0 12,22C13.84,22 15.55,21.45 17,20.5L19.5,23L20.75,21.73L13.04,14L3,4M11,9.44L13,11.44V8H11M15,1H9V3H15M19.04,4.55L17.62,5.97C16.07,4.74 14.12,4 12,4C10.17,4 8.47,4.55 7.05,5.5L8.5,6.94C9.53,6.35 10.73,6 12,6A7,7 0 0,1 19,13C19,14.27 18.65,15.47 18.06,16.5L19.5,17.94C20.45,16.53 21,14.83 21,13C21,10.88 20.26,8.93 19.03,7.39L20.45,5.97L19.04,4.55Z" /></svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+
+{{define "flash"}}
+<div>
+    <p>{{printf "%s" .}}</p>
+</div>
+{{end}}

@@ -44,19 +44,21 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>Farben <button type="submit" class="settingsSave"><svg viewBox="0 0 24 24">
-                            <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
-                        </svg></button></legend>
-                        <div class="grid2">
-                            <div>
-                                <p><b>Hauptfarbe</b></p>
-                                <input type="color" id="setPrimaryColor" name="primary" value="{{.ThemeColor}}">
-                           </div>
-                            <div>
-                                <p><b>Akzentfarbe</b></p>
-                                <input type="color" id="setAccentColor" name="accent" value="{{.AccentColor}}">
+                        <form method="POST" action="/settings/forms/colors">
+                            <legend>Farben <button type="submit" class="settingsSave"><svg viewBox="0 0 24 24">
+                                <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
+                            </svg></button></legend>
+                            <div class="grid2">
+                                <div>
+                                    <p><b>Hauptfarbe</b></p>
+                                    <input type="color" id="setThemeColor" name="themecolor" value="{{.ThemeColor}}">
                             </div>
-                        </div>
+                                <div>
+                                    <p><b>Akzentfarbe</b></p>
+                                    <input type="color" id="setAccentColor" name="accentcolor" value="{{.AccentColor}}">
+                                </div>
+                            </div>
+                        </form>
                     </fieldset>
                 </div>
                 <br>

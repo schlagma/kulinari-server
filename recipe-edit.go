@@ -14,7 +14,7 @@ import (
 func EditRecipeHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
 
-    tpl, _ := template.ParseFiles("templates/edit_recipe.html", "templates/parts.html")
+    tpl, _ := template.ParseFiles("templates/edit_recipe.gohtml", "templates/parts.gohtml")
     
     db := dbConn()
     params := mux.Vars(r)
@@ -40,7 +40,7 @@ func EditRecipeHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     if notFound == true {
-        tpl, _ = template.ParseFiles("templates/recipe.html", "templates/parts.html", "templates/notfound-recipe.html")
+        tpl, _ = template.ParseFiles("templates/recipe.gohtml", "templates/parts.gohtml", "templates/notfound-recipe.gohtml")
         data.Title = "Nichts gefunden"
     }
 

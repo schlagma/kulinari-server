@@ -10,7 +10,7 @@ import (
 
 func NewRecipeHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
-    tpl := template.Must(template.ParseFiles("templates/new_recipe.html", "templates/parts.html"))
+    tpl := template.Must(template.ParseFiles("templates/new_recipe.gohtml", "templates/parts.gohtml"))
     data := RecipeData{}
 
     userId := 1

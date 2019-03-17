@@ -12,7 +12,7 @@ import (
 )
 
 func ShareRecipeHandler(w http.ResponseWriter, r *http.Request) {
-    tpl, _ := template.ParseFiles("templates/share_recipe.html", "templates/parts.html")
+    tpl, _ := template.ParseFiles("templates/share_recipe.gohtml", "templates/parts.gohtml")
     
     db := dbConn()
     params := mux.Vars(r)
@@ -37,7 +37,7 @@ func ShareRecipeHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     if notFound == true {
-        tpl, _ = template.ParseFiles("templates/share_recipe.html", "templates/parts.html", "templates/notfound-recipe.html")
+        tpl, _ = template.ParseFiles("templates/share_recipe.gohtml", "templates/parts.gohtml", "templates/notfound-recipe.gohtml")
         data.Title = "Nichts gefunden"
     }
     

@@ -1,9 +1,32 @@
 package main
 
 import (
+    "html/template"
     "net/http"
     _ "github.com/go-sql-driver/mysql"
 )
+
+func StartHandler(w http.ResponseWriter, r *http.Request) {
+    tpl, _ := template.ParseFiles("templates/login.gohtml", "templates/parts.gohtml")
+    data := LoginData{}
+
+    queryValues := r.URL.Query()
+    userValue := queryValues.Get("user")
+    redirectValue := queryValues.Get("redirect")
+    data.User = userValue
+    data.Redirect = redirectValue
+
+    username := getUserName(r)
+    if username != "" && redirectValue == "" {
+        http.Redirect(w, r, "/recipes" , 302)
+    } else if username != "" && redirectValue != "" {
+        http.Redirect(w, r, redirectValue, 302)
+    }
+    
+    data.BaseURL = "/"
+
+    tpl.Execute(w, data)
+}
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
     queryValues := r.URL.Query()

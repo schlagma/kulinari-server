@@ -10,7 +10,7 @@ import (
 func ShoppingHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
     
-    abouttpl := template.Must(template.ParseFiles("templates/shopping.html", "templates/parts.html"))
+    abouttpl := template.Must(template.ParseFiles("templates/shopping.gohtml", "templates/parts.gohtml"))
     
     db := dbConn()
     selDB2, err := db.Query("SELECT uid, title FROM  recipes")

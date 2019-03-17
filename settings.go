@@ -13,7 +13,7 @@ func SGeneralHandler(w http.ResponseWriter, r *http.Request) {
     db := dbConn()
     selDB, err := db.Query("SELECT themecolor, accentcolor, darkmode FROM settings WHERE uid=1")
     
-    tpl := template.Must(template.ParseFiles("templates/settings_general.html", "templates/parts.html"))
+    tpl := template.Must(template.ParseFiles("templates/settings_general.gohtml", "templates/parts.gohtml"))
     config := LoadConfig("config/config.json")
     data := SGeneralData{}
     data.DBhost = config.Database.Host
@@ -44,7 +44,7 @@ func SGeneralHandler(w http.ResponseWriter, r *http.Request) {
 func SUsersHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
     
-    userstpl := template.Must(template.ParseFiles("templates/settings_user.html", "templates/parts.html"))
+    userstpl := template.Must(template.ParseFiles("templates/settings_user.gohtml", "templates/parts.gohtml"))
     db := dbConn()
     selDB, err := db.Query("SELECT uid, uname, fname, lname FROM  user")
     checkErr(err)
@@ -80,7 +80,7 @@ func SUsersHandler(w http.ResponseWriter, r *http.Request) {
 func SNewUserHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
     
-    tpl := template.Must(template.ParseFiles("templates/settings_user_new.html", "templates/parts.html"))
+    tpl := template.Must(template.ParseFiles("templates/settings_user_new.gohtml", "templates/parts.gohtml"))
     db := dbConn()
     selDB, err := db.Query("SELECT MAX(uid) FROM  user")
     checkErr(err)
@@ -107,7 +107,7 @@ func SNewUserHandler(w http.ResponseWriter, r *http.Request) {
 func SAboutHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
     
-    tpl := template.Must(template.ParseFiles("templates/settings_about.html", "templates/parts.html"))
+    tpl := template.Must(template.ParseFiles("templates/settings_about.gohtml", "templates/parts.gohtml"))
     data := RecipeData{}
 
     data.URL = r.URL.Path
@@ -118,7 +118,7 @@ func SAboutHandler(w http.ResponseWriter, r *http.Request) {
 func SAboutCopyrightHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
     
-    tpl := template.Must(template.ParseFiles("templates/settings_about_copyright.html", "templates/parts.html"))
+    tpl := template.Must(template.ParseFiles("templates/settings_about_copyright.gohtml", "templates/parts.gohtml"))
     data := RecipeData{}
 
     data.URL = r.URL.Path
@@ -153,7 +153,7 @@ func SColorsHandler(w http.ResponseWriter, r *http.Request) {
 func HelpHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
     
-    abouttpl := template.Must(template.ParseFiles("templates/help.html", "templates/parts.html"))
+    abouttpl := template.Must(template.ParseFiles("templates/help.gohtml", "templates/parts.gohtml"))
     data := RecipeData{}
 
     data.URL = r.URL.Path

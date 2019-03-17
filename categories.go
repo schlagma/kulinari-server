@@ -11,7 +11,7 @@ import (
 
 func CategoriesHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
-    tpl := template.Must(template.ParseFiles("templates/categories.html", "templates/parts.html"))
+    tpl := template.Must(template.ParseFiles("templates/categories.gohtml", "templates/parts.gohtml"))
     data := RecipeData {}
 
     userId := 1
@@ -27,7 +27,7 @@ func CategoriesHandler(w http.ResponseWriter, r *http.Request) {
 func CatContentHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
     
-    cattpl := template.Must(template.ParseFiles("templates/categories_content.html", "templates/parts.html"))
+    cattpl := template.Must(template.ParseFiles("templates/categories_content.gohtml", "templates/parts.gohtml"))
     
     db := dbConn()
     params := mux.Vars(r)

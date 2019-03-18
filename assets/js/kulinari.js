@@ -183,27 +183,29 @@ if (document.getElementById('btnStartStop') != null) {
         }
 
         const update = () => {
-            time--;
-            hour = parseInt(time / 3600);
-            minute = parseInt((time / 60) - (hour * 60));
-            second = parseInt(time - (hour * 3600) - (minute * 60));
+            while (time != 0) {
+                time--;
+                hour = parseInt(time / 3600);
+                minute = parseInt((time / 60) - (hour * 60));
+                second = parseInt(time - (hour * 3600) - (minute * 60));
 
-            if (hour < 10) {
-                document.getElementById('hour').innerHTML = "0" + hour;
-            } else {
-                document.getElementById('hour').innerHTML = hour;
-            }
-    
-            if (minute < 10) {
-                document.getElementById('minute').innerHTML = "0" + minute;
-            } else {
-                document.getElementById('minute').innerHTML = minute;
-            }
-    
-            if (second < 10) {
-                document.getElementById('second').innerHTML = "0" + second;
-            } else {
-                document.getElementById('second').innerHTML = second;
+                if (hour < 10) {
+                    document.getElementById('hour').innerHTML = "0" + hour;
+                } else {
+                    document.getElementById('hour').innerHTML = hour;
+                }
+        
+                if (minute < 10) {
+                    document.getElementById('minute').innerHTML = "0" + minute;
+                } else {
+                    document.getElementById('minute').innerHTML = minute;
+                }
+        
+                if (second < 10) {
+                    document.getElementById('second').innerHTML = "0" + second;
+                } else {
+                    document.getElementById('second').innerHTML = second;
+                }
             }
         };
         setInterval(update, 1000);

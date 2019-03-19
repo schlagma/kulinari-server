@@ -8,19 +8,6 @@
     <div id="app">
         {{template "header" .}}
         {{template "sidebar-recipes" .}}
-        
-        <div id="sidebarContent">
-            <div id="search-wrapper">
-                <div id="search-field">
-                    <input id="recFilter" placeholder="Filtern &hellip;">
-                </div>
-                <div id="search-content">
-                    <ul id="recUl" class="sidebar-list">
-                        {{range .Recipes}}<li><a href="{{$.BaseURL}}recipes/view/{{.Id}}">{{.Title}}</a></li>{{end}}
-                    </ul>
-                </div>
-            </div>
-        </div>
 
         <div id="content">
             <div id="cookbooks-content" class="container content-grid">
@@ -29,9 +16,9 @@
                 </div>
                 <div id="c-books">
                     <div id="cookbooks">
-                        {{range .CatContent}}<a class="book" href="{{$.BaseURL}}recipes/view/{{.Id}}">
+                        {{range .CatContent}}<a class="book" href="/recipes/view/{{.Id}}">
                             <div class="img">
-                                <img src="/assets/img/recipes/{{.Id}}-300.jpg" alt="">
+                                {{if .RecImgExist}}<img src="/assets/img/recipes/{{.Id}}-300.jpg" alt="">{{end}}
                             </div>
                             <h1>{{.Title}}</h1>
                         </a>{{end}}

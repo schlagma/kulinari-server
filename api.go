@@ -15,23 +15,26 @@ func ApiRecListHandler(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
     db := dbConn()
     data := RecList{}
-    selDB, err := db.Query("SELECT uid, title FROM recipes")
+    selDB, err := db.Query("SELECT uid, title, img FROM recipes")
     checkErr(err)
 
     var recList1 []int
     var recList2 []string
+    var recList3 []bool
     var recList13 []Recipe
     
     for selDB.Next() {
         var uid int
         var title string
-        err = selDB.Scan(&uid, &title)
+        var img bool
+        err = selDB.Scan(&uid, &title, &img)
         checkErr(err)
         recList1 = append(recList1, uid)
         recList2 = append(recList2, title)
+        recList3 = append(recList3, img)
         
         for i := 0; i < len(recList1); i++ {
-            recList12 := Recipe{recList1[i], recList2[i]}
+            recList12 := Recipe{recList1[i], recList2[i], recList3[i]}
             recList13 = append(recList13, recList12)
         }
         

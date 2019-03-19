@@ -13,7 +13,7 @@ func ShoppingHandler(w http.ResponseWriter, r *http.Request) {
     abouttpl := template.Must(template.ParseFiles("templates/shopping.gohtml", "templates/parts.gohtml"))
     
     db := dbConn()
-    selDB2, err := db.Query("SELECT uid, title FROM  recipes")
+    selDB2, err := db.Query("SELECT uid, title, img FROM  recipes")
 
     checkErr(err)
     
@@ -21,18 +21,21 @@ func ShoppingHandler(w http.ResponseWriter, r *http.Request) {
     
     var recList1 []int
     var recList2 []string
+    var recList3 []bool
     var recList13 []Recipe
     
     for selDB2.Next() {
         var uid int
         var title string
-        err = selDB2.Scan(&uid, &title)
+        var img bool
+        err = selDB2.Scan(&uid, &title, &img)
         checkErr(err)
         recList1 = append(recList1, uid)
         recList2 = append(recList2, title)
+        recList3 = append(recList3, img)
         
         for i := 1; i < len(recList1); i++ {
-            recList12 := Recipe{recList1[i], recList2[i]}
+            recList12 := Recipe{recList1[i], recList2[i], recList3[i]}
             recList13 = append(recList13, recList12)
         }
     

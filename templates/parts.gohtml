@@ -100,7 +100,14 @@
         </div>
         <div id="search-content">
             <ul id="recUl" class="sidebar-list">
-                {{range .Recipes}}<li><a href="{{$.BaseURL}}recipes/view/{{.Id}}">{{.Title}}</a></li>{{end}}
+                {{range .Recipes}}<li><a href="/recipes/view/{{.Id}}" style="display: grid;
+grid-template-columns: 2.5rem 1fr;
+grid-gap: .75rem;"><div style="width: 2.5rem;
+height: 2.5rem;
+border-radius: 50%;
+border: 1px solid #dfdfdf; overflow: hidden; background-color: var(--bg-dark2);
+margin: auto 0;">{{if .RecImgExist}}<img src="/assets/img/recipes/{{.Id}}-300.jpg" alt="" style="height: 2.5rem; width: 2.5rem; border: none; object-fit: cover;
+object-position: center;">{{end}}</div><div style="margin: auto 0;">{{.Title}}</div></a></li>{{end}}
             </ul>
         </div>
     </div>

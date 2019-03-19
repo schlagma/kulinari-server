@@ -22,7 +22,7 @@
                         </div>
                         <h1 class="recipe-title">{{.Title}}</h1>
                         {{if .CategoriesExist}}<div class="badge-wrapper">
-                            {{range .Categories}}<a href="{{$.BaseURL}}recipes/cat/{{.Id}}"><span class="badge badge-success">{{.Title}}</span></a>{{end}}
+                            {{range .Categories}}<a href="/recipes/cat/{{.Id}}"><span class="badge badge-success">{{.Title}}</span></a>{{end}}
                         </div>{{end}}
                     </div>
                 </div>

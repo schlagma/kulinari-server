@@ -729,6 +729,8 @@ textarea#taComments {
 
 .sidebar-list svg {
     height: 24px;
+    margin: auto;
+    top: 0;
 }
 
 .search-button {

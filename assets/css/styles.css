@@ -729,7 +729,7 @@ textarea#taComments {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    border: 1px solid #dfdfdf;
+    border: 1px solid var(--separator-color);
     overflow: hidden;
     background-color: var(--bg-dark2);
     margin: auto 0;

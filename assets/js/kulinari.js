@@ -25,11 +25,6 @@ if (document.getElementById('overlay') != null) {
             sidebar.style.visibility = 'hidden';
             overlay.style.visibility = 'hidden';
             overlay.style.backgroundColor = 'transparent';
-        } else {
-            sidebar.style.transform = 'translateX(0)';
-            sidebar.style.visibility = 'visible';
-            overlay.style.visibility = 'visible';
-            overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
         }
     });
 }

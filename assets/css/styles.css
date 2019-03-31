@@ -148,12 +148,11 @@ pre {
     grid-template-rows: 3rem 1fr;
     grid-template-areas: "sidebar-header header"
                          "sidebar-content content";
-    /*max-width: 1600px;
-    max-height: 900px;*/
+    max-width: 1600px;
+    max-height: 900px;
     overflow: hidden;
 }    
 
-/*
 @media screen and (min-height: 880px) {
     #app {
         top: calc((100% - 900px) / 2);
@@ -170,7 +169,6 @@ pre {
         box-shadow: 0 0 4px rgba(0,0,0,.4);
     }
 }
-*/
 
 #header {
     grid-column: 1 / span 2;

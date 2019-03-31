@@ -1,12 +1,17 @@
 if (document.getElementById('btnSidebar') != null) {
     document.getElementById('btnSidebar').addEventListener('click', function(){
         var sidebar = document.getElementById('sidebarContent');
-        if(sidebar.style.width === '0rem') {
-            sidebar.style.width = '20rem';
-            sidebar.style.borderRight = '1px solid var(--sep-color-dark)';
+        var overlay = document.getElementById('overlay');
+        if(sidebar.style.visibility === 'visible') {
+            sidebar.style.transform = 'translateX(-20rem)';
+            sidebar.style.visibility = 'hidden';
+            overlay.style.visibility = 'hidden';
+            overlay.style.backgroundColor = 'transparent';
         } else {
-            sidebar.style.width = '0rem';
-            sidebar.style.borderRight = 'none';
+            sidebar.style.transform = 'translateX(0)';
+            sidebar.style.visibility = 'visible';
+            overlay.style.visibility = 'visible';
+            overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
         }
     });
 }

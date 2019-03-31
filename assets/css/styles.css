@@ -151,7 +151,7 @@ pre {
     max-width: 1600px;
     max-height: 900px;
     overflow: hidden;
-}    
+}
 
 @media screen and (min-height: 880px) {
     #app {
@@ -174,6 +174,7 @@ pre {
     grid-column: 1 / span 2;
     grid-row: 1;
     position: initial;
+    z-index: 2000;
 }
 
 #sidebarContent {
@@ -187,6 +188,20 @@ pre {
     overflow-x: hidden;
     border-right: 1px solid var(--sep-color-dark);
     transition: var(--transition);
+    visibility: visible;
+}
+
+@media screen and (min-width: 701px) {
+    #sidebarContent {
+        width: 20rem !important;
+        border-right: 1px solid var(--sep-color-dark) !important;
+        visibility: visible !important;
+        transform: translateX(0) !important;
+    }
+
+    #overlay {
+        visibility: hidden !important;
+    }
 }
 
 #content {
@@ -524,7 +539,6 @@ textarea#taComments {
 .header-nav {
     margin: auto;
     width: 100%;
-    text-align: center;
 }
 
 .header-nav .menu-item {
@@ -665,6 +679,10 @@ textarea#taComments {
 
 #nav-content .card-block {
     padding: 0;
+}
+
+#btnSidebar {
+    display: none;
 }
 
 #btnSidebar svg {
@@ -1851,6 +1869,8 @@ button, .btn {
         grid-template-columns: 100%;
         grid-template-rows: 20.25rem 8rem;
         background: var(--bg-light);
+        display: flex;
+        flex-direction: column;
     }
 
     .login-wrapper {
@@ -1858,14 +1878,14 @@ button, .btn {
         grid-row: 1;
         border-radius: 0;
         box-shadow: none;
-        margin-top: 0;
+        margin-top: auto;
     }
     
     .login-error {
         grid-column: 1;
         grid-row: 2;
-        margin-bottom: 0;
-        padding: 0 1.5rem;
+        margin-bottom: auto;
+        padding: 0 1.5rem 4.5rem 1.5rem;
     }
     
     .login-error div {
@@ -1880,11 +1900,39 @@ button, .btn {
 }
 
 @media screen and (max-width: 700px) {
-    #sidebarContent {
-        width: 0rem;
-        border-right: none;
+    #app {
+        grid-template-columns: 1fr;
     }
-    
+
+    .header-nav {
+        text-align: center;
+    }
+
+    #btnSidebar {
+        display: inline;
+    }
+
+    #content {
+        grid-column: 1;
+    }
+
+    #sidebarContent {
+        transform: translateX(-20rem);
+        visibility: hidden;
+        z-index: 1000;
+        box-shadow: 0px 0px 2px 2px rgba(0,0,0,.35);
+    }
+
+    #overlay {
+        transition: var(--transition);
+        visibility: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        z-index: 900;
+    }
+
     .pageheader-content {
         padding-left: 1.5rem;
         padding-right: 1.5rem;

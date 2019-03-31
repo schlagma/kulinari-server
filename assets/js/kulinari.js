@@ -16,6 +16,24 @@ if (document.getElementById('btnSidebar') != null) {
     });
 }
 
+if (document.getElementById('overlay') != null) {
+    document.getElementById('overlay').addEventListener('click', function(){
+        var sidebar = document.getElementById('sidebarContent');
+        var overlay = document.getElementById('overlay');
+        if(sidebar.style.visibility === 'visible') {
+            sidebar.style.transform = 'translateX(-20rem)';
+            sidebar.style.visibility = 'hidden';
+            overlay.style.visibility = 'hidden';
+            overlay.style.backgroundColor = 'transparent';
+        } else {
+            sidebar.style.transform = 'translateX(0)';
+            sidebar.style.visibility = 'visible';
+            overlay.style.visibility = 'visible';
+            overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
+        }
+    });
+}
+
 if (document.getElementById('btnMenu') != null) {
     document.getElementById('btnMenu').addEventListener('click', function(){
         var menu = document.getElementById('menu');

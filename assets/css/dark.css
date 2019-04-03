@@ -8,6 +8,6 @@
     --sep-color-dark: #3d3d3d;
 }
 
-#pageheader .bg {
-    background: var(--bg-dark);
+#pageheader {
+    background-color: var(--bg-dark) !important;
 }

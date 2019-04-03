@@ -11,7 +11,7 @@ func SGeneralHandler(w http.ResponseWriter, r *http.Request) {
     isLoggedIn(w,r)
 
     db := dbConn()
-    selDB, err := db.Query("SELECT themecolor, accentcolor, darkmode FROM settings WHERE uid=1")
+    selDB, err := db.Query("SELECT themecolor, accentcolor FROM settings WHERE uid=1")
     
     tpl := template.Must(template.ParseFiles("templates/settings_general.gohtml", "templates/parts.gohtml"))
     config := LoadConfig("config/config.json")
@@ -22,19 +22,15 @@ func SGeneralHandler(w http.ResponseWriter, r *http.Request) {
     data.Lang = config.Lang
 
     for selDB.Next() {
-        var darkmode int
         var themecolor, accentcolor string
-        err = selDB.Scan(&themecolor, &accentcolor, &darkmode)
+        err = selDB.Scan(&themecolor, &accentcolor)
         checkErr(err)
         data.ThemeColor = themecolor
         data.AccentColor = accentcolor
-        data.DarkMode = false
-        if darkmode == 1 {
-            data.DarkMode = true
-        }
     }
     defer db.Close()
 
+    data.DarkMode = darkMode()
     data.URL = r.URL.Path
     data.BaseURL = "/"
     tpl.Execute(w, data)
@@ -110,6 +106,7 @@ func SAboutHandler(w http.ResponseWriter, r *http.Request) {
     tpl := template.Must(template.ParseFiles("templates/settings_about.gohtml", "templates/parts.gohtml"))
     data := RecipeData{}
 
+    data.DarkMode = darkMode()
     data.URL = r.URL.Path
     data.BaseURL = "/"
     tpl.Execute(w, data)
@@ -121,9 +118,32 @@ func SAboutCopyrightHandler(w http.ResponseWriter, r *http.Request) {
     tpl := template.Must(template.ParseFiles("templates/settings_about_copyright.gohtml", "templates/parts.gohtml"))
     data := RecipeData{}
 
+    data.DarkMode = darkMode()
     data.URL = r.URL.Path
     data.BaseURL = "/"
     tpl.Execute(w, data)
+}
+
+func SDarkModeHandler(w http.ResponseWriter, r *http.Request) {
+    isLoggedIn(w,r)
+
+    darkmode1 := r.FormValue("darkmode")
+    darkmode := 0
+    if darkmode1 != "" {
+        darkmode = 1
+    }
+
+    db := dbConn()
+    insForm, err := db.Prepare("UPDATE settings SET darkmode=? WHERE uid=1")
+    checkErr(err)
+    insForm.Exec(darkmode)
+    defer insForm.Close()
+    defer db.Close()
+
+    baseURL := "/"
+    redirect := baseURL + "settings/general"
+    
+    http.Redirect(w, r, redirect, 302)
 }
 
 func SColorsHandler(w http.ResponseWriter, r *http.Request) {

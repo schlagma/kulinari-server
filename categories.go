@@ -20,6 +20,7 @@ func CategoriesHandler(w http.ResponseWriter, r *http.Request) {
     data.Title = "Kategorien"
     data.URL = r.URL.Path
     data.BaseURL = "/"
+    data.DarkMode = darkMode()
     
     tpl.Execute(w, data)
 }
@@ -88,6 +89,7 @@ func CatContentHandler(w http.ResponseWriter, r *http.Request) {
         data.Title = title
     }
 
+    data.DarkMode = darkMode()
     data.URL = r.URL.Path
     data.BaseURL = "/"
     

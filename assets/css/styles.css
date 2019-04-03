@@ -1224,6 +1224,11 @@ legend {
     border-radius: .2rem .2rem 0 0;
 }
 
+fieldset > form > legend {
+    margin-top: calc(-1rem - 1px);
+    margin-bottom: .75rem;
+}
+
 .grid3 form legend {
     top: -1.05rem;
 }

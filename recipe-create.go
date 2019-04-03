@@ -16,6 +16,7 @@ func NewRecipeHandler(w http.ResponseWriter, r *http.Request) {
     userId := 1
     data.Recipes = recipeSidebarList(userId)
     data.Categories = allCatList()
+    data.DarkMode = darkMode()
     data.URL = r.URL.Path
     data.BaseURL = "/"
     

@@ -230,6 +230,7 @@ func RecipeHandler(w http.ResponseWriter, r *http.Request) {
         }
     }
 
+    data.DarkMode = darkMode()
     data.URL = r.URL.Path
     data.BaseURL = "/"
 

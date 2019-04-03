@@ -126,6 +126,7 @@ type LoginData struct {
     User     string
     Redirect string
     BaseURL  string
+    DarkMode bool
 }
 
 type Config struct {
@@ -351,6 +352,23 @@ func allCatList() []Category {
     return catList13
 }
 
+func darkMode() bool {
+    db := dbConn()
+    selDB, err := db.Query("SELECT darkmode FROM settings WHERE uid=1")
+    var darkMode bool
+    for selDB.Next() {
+        var darkmode int
+        err = selDB.Scan(&darkmode)
+        checkErr(err)
+        darkMode = false
+        if darkmode == 1 {
+            darkMode = true
+        }
+    }
+    defer db.Close()
+    return darkMode
+}
+
 func main() {
     config := LoadConfig("config/config.json")
 
@@ -373,6 +391,7 @@ func main() {
    // r.HandleFunc("/settings/users", SUsersHandler)
     r.HandleFunc("/settings/about", SAboutHandler)
     r.HandleFunc("/settings/about/copyright", SAboutCopyrightHandler)
+    r.HandleFunc("/settings/forms/darkmode", SDarkModeHandler).Methods("POST")
     r.HandleFunc("/settings/forms/colors", SColorsHandler).Methods("POST")
     r.HandleFunc("/help", HelpHandler)
     r.HandleFunc("/api/0.1/recipes/all", ApiRecListHandler)

@@ -47,6 +47,7 @@ func ShoppingHandler(w http.ResponseWriter, r *http.Request) {
     }
     defer db.Close()
 
+    data.DarkMode = darkMode()
     data.URL = r.URL.Path
     
     abouttpl.Execute(w, data)

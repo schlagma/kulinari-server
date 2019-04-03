@@ -23,6 +23,7 @@ func StartHandler(w http.ResponseWriter, r *http.Request) {
         http.Redirect(w, r, redirectValue, 302)
     }
     
+    data.DarkMode = darkMode()
     data.BaseURL = "/"
 
     tpl.Execute(w, data)

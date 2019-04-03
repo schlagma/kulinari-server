@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Einkaufsliste | Kulinari</title>
-    {{template "head"}}
+    {{template "head" .}}
 </head>
 <body>
 <div id="app" class="start">
-        {{template "header-nsb"}}
+        {{template "header-nsb" .}}
 
 <div id="content">
 <div id="purchase-content" class="container content-grid">
@@ -36,6 +36,6 @@
     
     </div>
 </div>
-    {{template "scripts"}}
+    {{template "scripts" .}}
 </body>
 </html>
